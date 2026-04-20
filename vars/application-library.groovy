@@ -18,10 +18,10 @@ def call() {
 
     stage('Deploy to Tomcat') {
         withCredentials([usernamePassword(credentialsId: 'tomcat-creds', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
-
             sh '''
-            WAR_FILE=$(ls target/*.war)
-            curl -v -u $USER:$PASS -T $WAR_FILE "$TOMCAT_URL/deploy?path=/myapp&update=true"
+            curl -v -u $USER:$PASS \
+            -T target/maven-web-application.war \
+            "$TOMCAT_URL/deploy?path=/myapp&update=true"
             '''
         }
     }
