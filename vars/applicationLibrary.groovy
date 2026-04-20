@@ -26,16 +26,3 @@ def call() {
         }
     }
 }
-  post {
-        success {
-            script {
-                sendSlackNotifications(currentBuild.result)
-            }
-        }
-        failure {
-            script {
-                sendSlackNotifications(currentBuild.result)
-            }
-        }
-    }
-}
